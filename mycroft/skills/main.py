@@ -42,8 +42,9 @@ def load_skills_callback():
     except AttributeError as e:
         logger.warning(e.message)
 
-    if exists(THIRD_PARTY_SKILLS_DIR):
-        load_skills(client, THIRD_PARTY_SKILLS_DIR)
+    for loc in THIRD_PARTY_SKILLS_DIR:
+        if exists(loc):
+            load_skills(client, loc)
 
     if ini_third_party_skills_dir and exists(ini_third_party_skills_dir):
         load_skills(client, ini_third_party_skills_dir)
